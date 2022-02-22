@@ -17,3 +17,5 @@ def add_book():
     }
     Book.add_book(data)
     return redirect('/books')
+
+

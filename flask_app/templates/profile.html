@@ -16,11 +16,17 @@
     {% for i in user: %}
         <h2>{{i.name}}'s Favorites</h2>
     {% endfor %}
-    <select class="form-select" aria-label="Default select example">
-        {% for i in all_books %}
-            <option value="{{i.id}}">{{i.tittle}}</option>
-        {% endfor %}
-    </select>
+    {% for i in all_faves %}
+        <p>{{i}}</p>
+    {% endfor %}
+    <form action="">
+        <select class="form-select" aria-label="Default select example">
+            {% for i in unfaves %}
+                <option value="{{i.id}}">{{i.tittle}}</option>
+            {% endfor %}
+        </select>
+        <button>Create</button>
+    </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>

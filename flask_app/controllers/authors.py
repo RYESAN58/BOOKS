@@ -18,7 +18,11 @@ def add():
 
 @app.route('/profile/<int:num>')
 def profile_page(num):
-    x = Author.get_specific(num)
-    y = Book.get_books()
-    print(x)
-    return render_template('profile.html', user = x, all_books = y)
+    data = {
+        'id': num
+    }
+    x = Author.get_specific(data)
+    y = Author.get_by_id(data)
+    print('THHIS IS Y ------>', y)
+    z = Book.unfavorited_books(data)
+    return render_template('profile.html', user = x, all_faves = y, unfaves = z, )
