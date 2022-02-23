@@ -11,7 +11,7 @@
 <title>Add book</title>
 </head>
 <body>
-    <h2>New Author</h2>
+    <h2>New Book</h2>
     <div class="mb-3">
         <form action="/add_book" method="POST">
             <label class="form-label">Book Name</label>
@@ -26,7 +26,7 @@
         <div>
             <ul>
                 {% for i in all_books %}
-                    <li>{{i.tittle}}</li>
+                    <li><a href="http://127.0.0.1:5000//bookpage/{{i.id}}">{{i.tittle}}</a></li>
                         <ul><li>{{i.num_of_pages}} pages</li></ul>
                 {% endfor %}
             </ul>

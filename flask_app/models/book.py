@@ -62,3 +62,8 @@ class Book:
     def add_favorite(cls, data):
         query = 'INSERT INTO `booksauthors`.`favorites` (`Author_id`, `book_id`) VALUES (%(Author_id)s, %(book_id)s);'
         return connectToMySQL('booksauthors').query_db(query,data)
+
+    @classmethod
+    def get_specific(cls,data):
+        query = "SELECT * FROM books where id = %(id)s"
+        return connectToMySQL('booksauthors').query_db(query,data)

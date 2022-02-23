@@ -46,7 +46,7 @@ class Author:
 
     @classmethod
     def get_by_id(cls , data):
-        query = "SELECT * FROM authors LEFT JOIN favorites ON authors.id = favorites.author_id LEFT JOIN books ON books.id = favorites.book_id WHERE authors.id = %(id)s;"
+        query = "SELECT * FROM authors LEFT JOIN favorites ON authors.id = favorites.author_id LEFT JOIN books ON books.id = favorites.book_id WHERE books.id = %(id)s;"
         print(query)
         results = connectToMySQL('booksauthors').query_db(query,data)
 
@@ -67,4 +67,4 @@ class Author:
             }
             print(data)
             author.favorite_books.append(book.Book(data))
-        return author
+        return results
