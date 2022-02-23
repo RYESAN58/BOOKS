@@ -18,4 +18,11 @@ def add_book():
     Book.add_book(data)
     return redirect('/books')
 
-
+@app.route('/addbook/<int:num>', methods= ['POST', 'GET'])
+def add_new(num):
+    data ={
+        'Author_id': num,
+        'book_id': request.form['book_id']
+    }
+    Book.add_favorite(data)
+    return redirect(f'/profile/{num}')

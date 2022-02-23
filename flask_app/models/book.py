@@ -40,10 +40,10 @@ class Book:
 
     @classmethod
     def get_by_id(cls,data):
-        query = "SELECT * FROM books LEFT JOIN favorites ON books.id = favorites.book_id LEFT JOIN authors ON authors.id = favorites.author_id WHERE books.id = %(id)s;"
+        query = "SELECT * FROM books LEFT JOIN favorites ON books.id = favorites.book_id LEFT JOIN authors ON authors.id = favorites.author_id WHERE author_id = %(id)s"
         results = connectToMySQL('booksauthors').query_db(query,data)
-
-        book = cls(results[0])
+        if len(results) > 0:
+            book = cls(results[0])
 
         for row in results:
             if row['authors.id'] == None:
@@ -54,5 +54,11 @@ class Book:
                 "created_at": row['authors.created_at'],
                 "updated_at": row['authors.updated_at']
             }
+            print('this is ______*****',  results[0])
             book.best_books.append(author.Author(data))
-        return book
+        return results
+
+    @classmethod
+    def add_favorite(cls, data):
+        query = 'INSERT INTO `booksauthors`.`favorites` (`Author_id`, `book_id`) VALUES (%(Author_id)s, %(book_id)s);'
+        return connectToMySQL('booksauthors').query_db(query,data)

@@ -22,7 +22,8 @@ def profile_page(num):
         'id': num
     }
     x = Author.get_specific(data)
-    y = Author.get_by_id(data)
+    y = Book.get_by_id(data)
     print('THHIS IS Y ------>', y)
     z = Book.unfavorited_books(data)
-    return render_template('profile.html', user = x, all_faves = y, unfaves = z, )
+    num1 = num
+    return render_template('profile.html', user = x, all_faves = y, unfaves = z, id= num1)
